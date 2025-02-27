@@ -1,28 +1,12 @@
-window.addEventListener('load', function() {
-    let audioElement = document.getElementById('background-audio');
-    let muteIcon = document.getElementById('mute-icon');
+let isMuted = false;
+const audio = document.getElementById('background-audio');
 
-    // Coba autoplay musik saat halaman dimuat
-    audioElement.play().then(() => {
-        muteIcon.classList.add('bi-volume-up-fill'); // Awalnya nyala
-    }).catch(error => console.log("Autoplay gagal: ", error));
-});
-
-function toggleAudio() {
-    let audioElement = document.getElementById('background-audio');
-    let muteIcon = document.getElementById('mute-icon');
-
-    if (!audioElement.paused) {
-        audioElement.pause(); // Musik dihentikan
-        muteIcon.classList.remove('bi-volume-up-fill');
-        muteIcon.classList.add('bi-volume-mute-fill');
-    } else {
-        audioElement.play(); // Musik dimainkan lagi
-        muteIcon.classList.remove('bi-volume-mute-fill');
-        muteIcon.classList.add('bi-volume-up-fill');
-    }
+function toggleMute() {
+    isMuted = !isMuted;
+    audio.muted = isMuted;
+    const muteButton = document.getElementById('mute-button');
+    muteButton.innerHTML = isMuted ? '<i class="bi bi-volume-mute"></i> Unmute' : '<i class="bi bi-volume-up"></i> Mute';
 }
-
 
 // Set the dates we're counting down to
 let countDownDate1 = new Date("March 22, 2025 00:00:00").getTime();
