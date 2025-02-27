@@ -1,29 +1,33 @@
 window.addEventListener('load', function() {
-    document.querySelector('.container').style.animation = 'fadeInUp 1s forwards';
-
     let audioElement = document.getElementById('background-audio');
     let muteIcon = document.getElementById('mute-icon');
 
-    // Memainkan musik otomatis saat halaman dimuat
-    audioElement.play().catch(error => console.log("Autoplay failed: ", error));
-    
-    // Set icon awal ke volume up
+    // Coba autoplay, jika gagal tunggu interaksi user
+    audioElement.play().catch(() => {
+        console.log("Autoplay failed, waiting for user interaction.");
+    });
+
+    // Set ikon awal ke volume up
     muteIcon.classList.remove('bi-volume-mute-fill');
     muteIcon.classList.add('bi-volume-up-fill');
+
+    muteIcon.addEventListener("click", toggleAudio);
 });
 
 function toggleAudio() {
     let audioElement = document.getElementById('background-audio');
     let muteIcon = document.getElementById('mute-icon');
 
-    if (audioElement.paused) {
+    if (audioElement.muted || audioElement.paused) {
+        audioElement.muted = false;
         audioElement.play();
-        muteIcon.classList.remove('bi-volume-mute-fill');
-        muteIcon.classList.add('bi-volume-up-fill');
+        muteIcon.classList.remove("bi-volume-mute-fill");
+        muteIcon.classList.add("bi-volume-up-fill");
     } else {
+        audioElement.muted = true;
         audioElement.pause();
-        muteIcon.classList.remove('bi-volume-up-fill');
-        muteIcon.classList.add('bi-volume-mute-fill');
+        muteIcon.classList.remove("bi-volume-up-fill");
+        muteIcon.classList.add("bi-volume-mute-fill");
     }
 }
 
@@ -31,6 +35,7 @@ function toggleAudio() {
 document.addEventListener('click', function() {
     let audioElement = document.getElementById('background-audio');
     if (audioElement.paused) {
+        audioElement.muted = false;
         audioElement.play();
     }
 }, { once: true });
