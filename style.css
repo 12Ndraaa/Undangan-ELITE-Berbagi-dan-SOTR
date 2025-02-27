@@ -100,39 +100,3 @@ p {
         transform: translateX(-100%);
     }
 }
-
-/* Styling Umum untuk Tombol Bulat */
-.back-button,
-.mute-button {
-    position: fixed;
-    bottom: 20px;
-    width: 50px;
-    height: 50px;
-    background: rgba(0, 0, 0, 0.5); /* Transparan */
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 9999; /* Selalu di atas */
-    transition: background 0.3s, transform 0.2s;
-}
-
-/* Tombol Back */
-.back-button {
-    right: 80px; /* Jarak dari tombol mute */
-}
-
-/* Tombol Mute */
-.mute-button {
-    right: 20px; /* Posisi di pojok kanan bawah */
-}
-
-/* Efek Hover */
-.back-button:hover,
-.mute-button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-}
