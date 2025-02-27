@@ -1,12 +1,30 @@
-let isMuted = false;
-const audio = document.getElementById('background-audio');
-
-function toggleMute() {
-    isMuted = !isMuted;
-    audio.muted = isMuted;
+document.addEventListener("DOMContentLoaded", function() {
+    const audio = document.getElementById('background-audio');
     const muteButton = document.getElementById('mute-button');
-    muteButton.innerHTML = isMuted ? '<i class="bi bi-volume-mute"></i> Unmute' : '<i class="bi bi-volume-up"></i> Mute';
-}
+    let isMuted = false;
+
+    // Fungsi untuk toggle mute/unmute
+    function toggleMute() {
+        isMuted = !isMuted;
+        audio.muted = isMuted;
+        updateMuteButtonIcon();
+    }
+
+    // Fungsi untuk memperbarui ikon tombol mute
+    function updateMuteButtonIcon() {
+        if (isMuted) {
+            muteButton.innerHTML = '<i class="bi bi-volume-mute"></i>';
+        } else {
+            muteButton.innerHTML = '<i class="bi bi-volume-up"></i>';
+        }
+    }
+
+    // Inisialisasi ikon tombol mute saat halaman dimuat
+    updateMuteButtonIcon();
+
+    // Menambahkan event listener ke tombol mute
+    muteButton.addEventListener('click', toggleMute);
+});
 
 // Set the dates we're counting down to
 let countDownDate1 = new Date("March 22, 2025 00:00:00").getTime();
