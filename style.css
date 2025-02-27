@@ -101,50 +101,37 @@ p {
     }
 }
 
-.back-button {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background: rgba(0, 0, 0, 0.5); /* Warna gelap transparan */
-    padding: 15px;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Pastikan tombol berada di atas semua elemen */
-    transition: background 0.3s, transform 0.2s;
-}
-
-.back-button i {
-    color: white;
-}
-
-.back-button:hover {
-    background: rgba(255, 255, 255, 0.3); /* Transparansi lebih terang saat hover */
-    transform: scale(1.1);
-}
-
-/* Membuat tombol tidak menghalangi klik di area kosongnya */
-.back-button {
-    pointer-events: auto; /* Pastikan hanya ikon yang menerima klik */
-}
-
+/* Styling Umum untuk Tombol Bulat */
+.back-button,
 .mute-button {
     position: fixed;
     bottom: 20px;
-    right: 20px;
-    font-size: 2rem;
-    color: white;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 10px;
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.5); /* Transparan */
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
     cursor: pointer;
-    z-index: 9999;
+    z-index: 9999; /* Selalu di atas */
     transition: background 0.3s, transform 0.2s;
 }
 
+/* Tombol Back */
+.back-button {
+    right: 80px; /* Jarak dari tombol mute */
+}
+
+/* Tombol Mute */
+.mute-button {
+    right: 20px; /* Posisi di pojok kanan bawah */
+}
+
+/* Efek Hover */
+.back-button:hover,
 .mute-button:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: scale(1.1);
