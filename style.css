@@ -25,9 +25,14 @@ body{
     }
 }
 
-      .carousel-inner .carousel-item img {
+      .carousel-inner .carousel-item img,
+      img {
         aspect-ratio: 16 / 9;
         object-fit: cover;
+        width: 100%;
+        opacity: 0;
+        animation: bounceIn 1s forwards;
+        animation-delay: 1.5s;
       }
 
       /* Heading animations */
@@ -42,14 +47,6 @@ h2:nth-of-type(1) {
 
 h3 {
     animation-delay: 1s;
-}
-
-/* Image animations */
-img {
-    width: 410px;
-    opacity: 0;
-    animation: bounceIn 1s forwards;
-    animation-delay: 1.5 s;
 }
 
 /* Paragraph animations */
