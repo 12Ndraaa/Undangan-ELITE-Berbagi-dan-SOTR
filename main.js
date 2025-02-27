@@ -1,44 +1,33 @@
-window.addEventListener('load', function() {
-    let audioElement = document.getElementById('background-audio');
-    let muteIcon = document.getElementById('mute-icon');
+document.addEventListener("DOMContentLoaded", function () {
+    let audioElement = document.getElementById("background-audio");
+    let muteIcon = document.getElementById("mute-icon");
 
-    // Coba autoplay, jika gagal tunggu interaksi user
-    audioElement.play().catch(() => {
-        console.log("Autoplay failed, waiting for user interaction.");
-    });
+    // Memainkan musik otomatis saat halaman dimuat
+    audioElement.play().catch(error => console.log("Autoplay failed: ", error));
 
-    // Set ikon awal ke volume up
-    muteIcon.classList.remove('bi-volume-mute-fill');
-    muteIcon.classList.add('bi-volume-up-fill');
+    function toggleAudio() {
+        if (audioElement.paused) {
+            audioElement.play();
+            muteIcon.classList.remove("bi-volume-mute-fill");
+            muteIcon.classList.add("bi-volume-up-fill");
+        } else {
+            audioElement.pause();
+            muteIcon.classList.remove("bi-volume-up-fill");
+            muteIcon.classList.add("bi-volume-mute-fill");
+        }
+    }
 
+    // Pastikan musik mulai saat pertama kali halaman diklik (untuk beberapa browser yang memblokir autoplay)
+    document.addEventListener("click", function () {
+        if (audioElement.paused) {
+            audioElement.play();
+        }
+    }, { once: true });
+
+    // Tambahkan event listener ke tombol mute
     muteIcon.addEventListener("click", toggleAudio);
 });
 
-function toggleAudio() {
-    let audioElement = document.getElementById('background-audio');
-    let muteIcon = document.getElementById('mute-icon');
-
-    if (audioElement.muted || audioElement.paused) {
-        audioElement.muted = false;
-        audioElement.play();
-        muteIcon.classList.remove("bi-volume-mute-fill");
-        muteIcon.classList.add("bi-volume-up-fill");
-    } else {
-        audioElement.muted = true;
-        audioElement.pause();
-        muteIcon.classList.remove("bi-volume-up-fill");
-        muteIcon.classList.add("bi-volume-mute-fill");
-    }
-}
-
-// Memastikan musik mulai saat pertama kali halaman diklik
-document.addEventListener('click', function() {
-    let audioElement = document.getElementById('background-audio');
-    if (audioElement.paused) {
-        audioElement.muted = false;
-        audioElement.play();
-    }
-}, { once: true });
 
 // Set the dates we're counting down to
 let countDownDate1 = new Date("March 22, 2025 00:00:00").getTime();
