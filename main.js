@@ -6,16 +6,16 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fungsi untuk toggle mute/unmute
     function toggleMute() {
         isMuted = !isMuted;
-        audio.muted = isMuted;
-        updateMuteButtonIcon();
+        audio.muted = isMuted; // Mengatur status mute pada audio
+        updateMuteButtonIcon(); // Memperbarui ikon tombol mute
     }
 
     // Fungsi untuk memperbarui ikon tombol mute
     function updateMuteButtonIcon() {
         if (isMuted) {
-            muteButton.innerHTML = '<i class="bi bi-volume-mute"></i>';
+            muteButton.innerHTML = '<i class="bi bi-volume-mute"></i>'; // Ikon mute
         } else {
-            muteButton.innerHTML = '<i class="bi bi-volume-up"></i>';
+            muteButton.innerHTML = '<i class="bi bi-volume-up"></i>'; // Ikon unmute
         }
     }
 
