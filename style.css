@@ -101,14 +101,27 @@ p {
     }
 }
 
-#back-button {
+#back-button, #mute-button {
     position: fixed;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 1000; /* Agar tetap di atas konten */
+}
+
+#back-button {
     left: 20px;
     bottom: 20px;
 }
 
 #mute-button {
-    position: fixed;
     right: 20px;
     bottom: 20px;
 }
