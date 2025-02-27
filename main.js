@@ -1,32 +1,27 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let audioElement = document.getElementById("background-audio");
-    let muteIcon = document.getElementById("mute-icon");
+window.addEventListener('load', function() {
+    let audioElement = document.getElementById('background-audio');
+    let muteIcon = document.getElementById('mute-icon');
 
-    // Memainkan musik otomatis saat halaman dimuat
-    audioElement.play().catch(error => console.log("Autoplay failed: ", error));
-
-    function toggleAudio() {
-        if (audioElement.paused) {
-            audioElement.play();
-            muteIcon.classList.remove("bi-volume-mute-fill");
-            muteIcon.classList.add("bi-volume-up-fill");
-        } else {
-            audioElement.pause();
-            muteIcon.classList.remove("bi-volume-up-fill");
-            muteIcon.classList.add("bi-volume-mute-fill");
-        }
-    }
-
-    // Pastikan musik mulai saat pertama kali halaman diklik (untuk beberapa browser yang memblokir autoplay)
-    document.addEventListener("click", function () {
-        if (audioElement.paused) {
-            audioElement.play();
-        }
-    }, { once: true });
-
-    // Tambahkan event listener ke tombol mute
-    muteIcon.addEventListener("click", toggleAudio);
+    // Coba autoplay musik saat halaman dimuat
+    audioElement.play().then(() => {
+        muteIcon.classList.add('bi-volume-up-fill'); // Awalnya nyala
+    }).catch(error => console.log("Autoplay gagal: ", error));
 });
+
+function toggleAudio() {
+    let audioElement = document.getElementById('background-audio');
+    let muteIcon = document.getElementById('mute-icon');
+
+    if (!audioElement.paused) {
+        audioElement.pause(); // Musik dihentikan
+        muteIcon.classList.remove('bi-volume-up-fill');
+        muteIcon.classList.add('bi-volume-mute-fill');
+    } else {
+        audioElement.play(); // Musik dimainkan lagi
+        muteIcon.classList.remove('bi-volume-mute-fill');
+        muteIcon.classList.add('bi-volume-up-fill');
+    }
+}
 
 
 // Set the dates we're counting down to
