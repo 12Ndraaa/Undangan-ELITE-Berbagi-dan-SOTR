@@ -1,26 +1,39 @@
 window.addEventListener('load', function() {
     document.querySelector('.container').style.animation = 'fadeInUp 1s forwards';
+
+    let audioElement = document.getElementById('background-audio');
+    let muteIcon = document.getElementById('mute-icon');
+
+    // Memainkan musik otomatis saat halaman dimuat
+    audioElement.play().catch(error => console.log("Autoplay failed: ", error));
+    
+    // Set icon awal ke volume up
+    muteIcon.classList.remove('bi-volume-mute-fill');
+    muteIcon.classList.add('bi-volume-up-fill');
 });
 
-let audioElement = document.getElementById('background-audio');
-let muteIcon = document.getElementById('mute-icon');
-
 function toggleAudio() {
-    if (audioElement.muted) {
-        audioElement.muted = false;
+    let audioElement = document.getElementById('background-audio');
+    let muteIcon = document.getElementById('mute-icon');
+
+    if (audioElement.paused) {
+        audioElement.play();
         muteIcon.classList.remove('bi-volume-mute-fill');
         muteIcon.classList.add('bi-volume-up-fill');
     } else {
-        audioElement.muted = true;
+        audioElement.pause();
         muteIcon.classList.remove('bi-volume-up-fill');
         muteIcon.classList.add('bi-volume-mute-fill');
     }
 }
 
+// Memastikan musik mulai saat pertama kali halaman diklik
 document.addEventListener('click', function() {
-    document.querySelector('audio').play();
+    let audioElement = document.getElementById('background-audio');
+    if (audioElement.paused) {
+        audioElement.play();
+    }
 }, { once: true });
-
 
 // Set the dates we're counting down to
 let countDownDate1 = new Date("March 22, 2025 00:00:00").getTime();
