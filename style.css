@@ -100,3 +100,15 @@ p {
         transform: translateX(-100%);
     }
 }
+
+#back-button {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+}
+
+#mute-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
